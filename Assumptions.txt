@@ -1,0 +1,3 @@
+Assumptions:
+
+The website handles availabilit checks, request records, and booking storage internally since no separate database or booking service is specified. If a facility is unavailable, the renter can choose another date or end the process. Payment is only requested after school staff approves the rental request. If payment fails, the request is not confirmed, and the renter receives an email notification. A successful booking is saved before the confirmation email is sent.
