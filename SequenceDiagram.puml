@@ -19,11 +19,25 @@ Website --> Renter: Facility available
 Website -> Staff: Send request for review
 Staff -> Staff: Review request
 
+
 ' Staff approves or rejects
 alt [approved]
     Staff --> Website: Approve request
+
+    ' Website requests payment
+    Website -> Pay: Process payment
+    Pay --> Website: Payment result
+
+    ' Payment succeeds or fails
+    alt [payment succeeds]
+        Website -> Website: Save booking
+    else [payment fails]
+        Website -> Website: Record payment failure
+    end
+
 else [rejected]
     Staff --> Website: Reject request
 end
+
 
 @enduml
