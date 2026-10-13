@@ -8,4 +8,12 @@ participant "School Staff" as Staff
 participant "Payment Service" as Pay
 participant "Email Service" as Email
 
+
+' Renter submits a rental request
+Renter -> Website: Submit rental request
+
+' Website checks availability
+Website -> Website: Check availability
+Website --> Renter: Facility available
+
 @enduml
