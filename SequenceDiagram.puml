@@ -1,0 +1,11 @@
+
+@startuml
+title School Facility Rental - Sequence Diagram
+
+actor Renter
+participant Website
+participant "School Staff" as Staff
+participant "Payment Service" as Pay
+participant "Email Service" as Email
+
+@enduml
