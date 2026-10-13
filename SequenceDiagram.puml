@@ -19,25 +19,32 @@ Website --> Renter: Facility available
 Website -> Staff: Send request for review
 Staff -> Staff: Review request
 
-
 ' Staff approves or rejects
 alt [approved]
     Staff --> Website: Approve request
 
-    ' Website requests payment
+    ' Process payment
     Website -> Pay: Process payment
     Pay --> Website: Payment result
 
-    ' Payment succeeds or fails
     alt [payment succeeds]
+        ' Save and confirm booking
         Website -> Website: Save booking
+        Website -> Email: Send booking confirmation
+        Email -> Renter: Confirmation email
+
     else [payment fails]
+        ' Record and notify payment failure
         Website -> Website: Record payment failure
+        Website -> Email: Send payment failure notice
+        Email -> Renter: Payment failure email
     end
 
 else [rejected]
+    ' Record and notify rejection
     Staff --> Website: Reject request
+    Website -> Website: Record rejection
+    Website -> Email: Send rejection notice
+    Email -> Renter: Rejection email
 end
-
-
 @enduml
